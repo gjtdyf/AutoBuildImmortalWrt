@@ -70,19 +70,9 @@ elif [ "$count" -gt 1 ]; then
    # LAN口设置静态IP
    uci set network.lan.proto='static'
    # 多网口设备 支持修改为别的ip地址
-   uci set network.lan.ipaddr='192.168.100.1'
+   uci set network.lan.ipaddr='192.168.110.2'
    uci set network.lan.netmask='255.255.255.0'
    echo "set 192.168.100.1 at $(date)" >> $LOGFILE
-   # 判断是否启用 PPPoE
-   echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
-   if [ "$enable_pppoe" = "yes" ]; then
-      echo "PPPoE is enabled at $(date)" >> $LOGFILE
-      # 设置ipv4宽带拨号信息
-      uci set network.wan.proto='pppoe'
-      uci set network.wan.username=$pppoe_account
-      uci set network.wan.password=$pppoe_password
-      uci set network.wan.peerdns='1'
-      uci set network.wan.auto='1'
       # 设置ipv6 默认不配置协议
       uci set network.wan6.proto='none'
       echo "PPPoE configuration completed successfully." >> $LOGFILE
