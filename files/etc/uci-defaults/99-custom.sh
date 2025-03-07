@@ -73,14 +73,7 @@ elif [ "$count" -gt 1 ]; then
    uci set network.lan.ipaddr='192.168.110.2'
    uci set network.lan.netmask='255.255.255.0'
    echo "set 192.168.100.1 at $(date)" >> $LOGFILE
-      # 设置ipv6 默认不配置协议
-      uci set network.wan6.proto='none'
-      echo "PPPoE configuration completed successfully." >> $LOGFILE
-   else
-      echo "PPPoE is not enabled. Skipping configuration." >> $LOGFILE
-   fi
-fi
-
+   
 
 # 设置所有网口可访问网页终端
 uci delete ttyd.@ttyd[0].interface
